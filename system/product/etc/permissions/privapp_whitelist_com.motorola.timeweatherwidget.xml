@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<permissions>
+<privapp-permissions package="com.motorola.timeweatherwidget">
+<permission name="android.permission.READ_EXTERNAL_STORAGE"/>
+<permission name="com.google.android.gms.permission.ACTIVITY_RECOGNITION"/>
+<permission name="android.permission.ACCESS_FINE_LOCATION"/>
+<permission name="android.permission.ACCESS_COARSE_LOCATION"/>
+<permission name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+<permission name="android.permission.INTERNET"/>
+<permission name="android.permission.FOREGROUND_SERVICE"/>
+<permission name="android.permission.SCHEDULE_EXACT_ALARM"/>
+<permission name="com.android.alarm.permission.SET_ALARM"/>
+<permission name="com.motorola.permission.ACCESS_CHECKIN"/>
+<permission name="com.motorola.launcher3.permission.READ_SETTINGS"/>
+<permission name="com.motorola.launcher3.permission.WRITE_SETTINGS"/>
+<permission name="com.android.launcher3.permission.READ_SETTINGS"/>
+<permission name="com.android.launcher3.permission.WRITE_SETTINGS"/>
+<permission name="com.motorola.launcher3.permission.SEND_GRID_CHANGE_BROADCASTS"/>
+<permission name="com.motorola.launcher3.permission.RECEIVE_GRID_CHANGE_BROADCASTS"/>
+<permission name="com.motorola.launcher3.permission.SEND_WALLPAPER_THEME_CHANGE_BROADCASTS"/>
+<permission name="com.motorola.launcher3.permission.RECEIVE_WALLPAPER_THEME_CHANGE_BROADCASTS"/>
+<permission name="com.motorola.launcher3.permission.ASSIST"/>
+<permission name="com.zui.uhealth.permission.READ_PROVIDER"/>
+<permission name="com.zui.uhealth.permission.WRITE_PROVIDER"/>
+<permission name="com.motorola.commandcenter.permission.READ_DATA"/>
+<permission name="com.motorola.myscreen.permission.ACCESS_MYSCREEN"/>
+<permission name="com.motorola.permission.BIND_EXPERIENCE"/>
+<permission name="android.permission.WAKE_LOCK"/>
+<permission name="android.permission.ACCESS_NETWORK_STATE"/>
+<permission name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+</privapp-permissions>
+</permissions>

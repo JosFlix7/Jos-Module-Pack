@@ -28,8 +28,10 @@ LATESTARTSERVICE=true
   ui_print "   - Scroll Optimization v1 by @zaidannn7"
   ui_print "   - Disable Client Composition Cache v1 by @zaidannn7"
   ui_print "   - Close Logd v7 by 旧梦, @头露基基 & @杀鲸"
+  ui_print "   - Disable Unwanted Google Play Service v1.2.5 by Ndik"
+  ui_print "   - GPU Turbo Boost (Ocean Tiramisu Mod) v6.2.1 by EmperorEye1993 & JosFlix7"
   ui_print "   "
-  ui_print "   TOTAL: 16"
+  ui_print "   TOTAL: 18"
   ui_print "   (Varia dependiendo la version de Android)"
   ui_print "*******************************************************"
 
@@ -109,26 +111,21 @@ chmod 777 /data/user_de/0/com.solohsu.android.edxp.manager/log
 chmod 777 /data/user_de/0/org.meowcat.edxposed.manager/log
 /sbin/.magisk/busybox/chattr -i -a -A /data/user_de/0/com.miui.home/cache/debug_log
 chmod 777 /data/user_de/0/com.miui.home/cache/debug_log
-
 rm -rf /data/user_de/0/com.miui.home/cache/debug_log
 rm -rf /data/user_de/0/org.meowcat.edxposed.manager/log
 rm -rf  /data/user_de/0/com.solohsu.android.edxp.manager/log
-
 rm -rf /cache/magisk.log
 touch   /cache/magisk.log
 chmod 000  /cache/magisk.log
 /sbin/.magisk/busybox/chattr +i  /cache/magisk.log
-
 rm -rf  /data/user_de/0/com.solohsu.android.edxp.manager/log
 touch    /data/user_de/0/com.solohsu.android.edxp.manager/log
 chmod 000   /data/user_de/0/com.solohsu.android.edxp.manager/log
 /sbin/.magisk/busybox/chattr +i   /data/user_de/0/com.solohsu.android.edxp.manager/log
-
 rm -rf /data/user_de/0/org.meowcat.edxposed.manager/log
 touch   /data/user_de/0/org.meowcat.edxposed.manager/log
 chmod 000  /data/user_de/0/org.meowcat.edxposed.manager/log
 /sbin/.magisk/busybox/chattr +i  /data/user_de/0/org.meowcat.edxposed.manager/log
-
 rm -rf /data/user_de/0/com.miui.home/cache/debug_log
 touch   /data/user_de/0/com.miui.home/cache/debug_log
 chmod 000  /data/user_de/0/com.miui.home/cache/debug_log 

@@ -1,33 +1,32 @@
 #!/system/bin/sh
 MODDIR=${0%/*}
 
+# GPU Turbo Boost
+write /proc/sys/vm/page-cluster 0
+write /sys/block/zram0/max_comp_streams 4
+# Set zram configurations
+setprop ro.vendor.qti.config.zram true
+
 # Close Logd post-fs-data mode script
 if
 rm -rf /cache/magisk.log
 touch   /cache/magisk.log
 chmod 000  /cache/magisk.log
 /sbin/.magisk/busybox/chattr +i  /cache/magisk.log
-
 rm -rf  /data/user_de/0/com.solohsu.android.edxp.manager/log
 touch    /data/user_de/0/com.solohsu.android.edxp.manager/log
 chmod 000   /data/user_de/0/com.solohsu.android.edxp.manager/log
 /sbin/.magisk/busybox/chattr +i   /data/user_de/0/com.solohsu.android.edxp.manager/log
-
 rm -rf /data/user_de/0/org.meowcat.edxposed.manager/log
 touch   /data/user_de/0/org.meowcat.edxposed.manager/log
 chmod 000  /data/user_de/0/org.meowcat.edxposed.manager/log
 /sbin/.magisk/busybox/chattr +i  /data/user_de/0/org.meowcat.edxposed.manager/log
-
 rm -rf /data/user_de/0/com.miui.home/cache/debug_log
 touch   /data/user_de/0/com.miui.home/cache/debug_log
 chmod 000  /data/user_de/0/com.miui.home/cache/debug_log 
-
-
 then
 echo "Limpieza completada"
 fi
-
-
 # disable I/O debugging
 echo 0 > /sys/block/dm-0/queue/iostats
 echo 0 > /sys/block/mmcblk0/queue/iostats

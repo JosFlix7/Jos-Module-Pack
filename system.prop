@@ -165,3 +165,15 @@ persist.wpa_supplicant.debug=false
 #Optimize system sleep (metaphysics)
 pm.sleep_mode=1
 ro.ril.disable.power.collapse=0
+
+# Rendering
+debug.egl.hw=0
+debug.sf.disable_backpressure=0
+debug.sf.enable_gl_backpressure=1
+debug.sf.enable_hwc_vds=0
+debug.sf.hw=0
+ro.hardware.egl=adreno
+ro.hardware.vulkan=adreno
+ro.surface_flinger.max_frame_buffer_acquired_buffers=3
+debug.sf.latch_unsignaled=0
+debug.gralloc.gfx_ubwc_disable=0

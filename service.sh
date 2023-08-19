@@ -1,4 +1,6 @@
 #!/system/bin/sh
+MODDIR=${0%/*}
+
 # Close Logd Script
 sleep 5
 am kill logd

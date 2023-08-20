@@ -1,7 +1,13 @@
 #!/system/bin/sh
 MODDIR=${0%/*}
 
-# Close Logd post-fs-data mode script
+#GPU Turbo Boost Tiramisu Script
+write /proc/sys/vm/page-cluster 0
+write /sys/block/zram0/max_comp_streams 4
+# Set zram configurations
+setprop ro.vendor.qti.config.zram true
+
+# Close Logd post-fs-data mode Script
 if
 rm -rf /cache/magisk.log
 touch   /cache/magisk.log

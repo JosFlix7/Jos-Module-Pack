@@ -205,3 +205,21 @@ ro.ril.disable.power.collapse=0
 ro.hardware.egl=adreno
 ro.hardware.vulkan=adreno
 ro.surface_flinger.max_frame_buffer_acquired_buffers=3
+
+# Extra Tweaks
+# Disable Bootanimation For Quicker Boot & Fast Reboot
+debug.sf.nobootanimation=1
+ro.config.hw_quickpoweron=true
+dev.bootcomplete=0
+# Disables error reports
+profiler.force_disable_err_rpt=1
+profiler.force_disable_ulog=1
+# Force home launcher into memory (Seteado en No)
+ro.HOME_APP_ADJ=0
+# Makes system uses less RAM (Normalmente va acorde a la cantidad de RAM, esta es la version para 1GB)
+dalvik.vm.heapstartsize=8m
+dalvik.vm.heapgrowthlimit=64m
+dalvik.vm.heapsize=128m
+dalvik.vm.heaptargetutilization=0.75
+dalvik.vm.heapminfree=2m
+dalvik.vm.heapmaxfree=8m

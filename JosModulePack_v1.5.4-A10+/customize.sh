@@ -21,7 +21,7 @@ ui_print "   - Bye Blur v2 by @modulostk"
 ui_print "   - ByeShit v666.7 by @nonosvaimos"
 ui_print "   - APN Fix v1 by JosFlix7"
 ui_print "   - Wifi Bonding (Qcom) v1.15 by simonsmh"
-ui_print "   - Moto Widget v4.09.11 by Hamido, Amr & Ayra Hikari"
+ui_print "   - Moto Widget Permissions v4.09.15 by Hamido & Amr"
 ui_print "   - Performance Activity Manager v1 by @Haruu1416"
 ui_print "   - SkiaGL Optimization v2 by @zaidannn7 & @modulostk"
 ui_print "   - Scroll Optimization v1 by @zaidannn7"
@@ -30,7 +30,7 @@ ui_print "   - Close Logd v7 by 旧梦, @头露基基 & @杀鲸"
 ui_print "   - Fresh UI v1.0 by @nonosvaimos"
 ui_print "   - Rendering v1.2 by @nonosvaimos"
 ui_print "   - GPU Turbo Boost (Tiramisu Mod) v6.2.1 by EmperorEye1993 & JosFlix7"
-ui_print "   - Ocean JosFlix7 Bootanimation v1 by JosFlix7"
+ui_print "   - LowRAM-Flag Plus (Without LowRAM Prop) v3.2 by JosFlix7"
 ui_print "   -------------------------------------------------   "
 ui_print "   TOTAL: 20"
 ui_print "*******************************************************"
@@ -63,8 +63,6 @@ if [[ "$CODENAME" == "33" ]]; then
   cp -rf "$MODPATH"/Apps/ExternalStorageProvider_T/* "$MODPATH"/system/priv-app/ExternalStorageProvider
   mkdir -p "$MODPATH"/system/product/overlay
   cp -rf "$MODPATH"/Apps/WallZoomAnim "$MODPATH"/system/product/overlay
-  mkdir -p "$MODPATH"/system/product/priv-app
-  cp -rf "$MODPATH"/Apps/MotoWidget "$MODPATH"/system/product/priv-app
   cp -rf "$MODPATH"/Apps/vendor "$MODPATH"/system
 elif [[ "$CODENAME" == "32" ]]; then
   ui_print "- Android 12L (API 32) detectado."
@@ -72,8 +70,6 @@ elif [[ "$CODENAME" == "32" ]]; then
   cp -rf "$MODPATH"/Apps/ExternalStorageProvider_S/* "$MODPATH"/system/priv-app/ExternalStorageProvider
   mkdir -p "$MODPATH"/system/product/overlay
   cp -rf "$MODPATH"/Apps/WallZoomAnim "$MODPATH"/system/product/overlay
-  mkdir -p "$MODPATH"/system/product/priv-app
-  cp -rf "$MODPATH"/Apps/MotoWidget "$MODPATH"/system/product/priv-app
   cp -rf "$MODPATH"/Apps/vendor "$MODPATH"/system
 elif [[ "$CODENAME" == "31" ]]; then
   ui_print "- Android 12 (API 31) detectado."
@@ -81,8 +77,6 @@ elif [[ "$CODENAME" == "31" ]]; then
   cp -rf "$MODPATH"/Apps/ExternalStorageProvider_S/* "$MODPATH"/system/priv-app/ExternalStorageProvider
   mkdir -p "$MODPATH"/system/product/overlay
   cp -rf "$MODPATH"/Apps/WallZoomAnim "$MODPATH"/system/product/overlay
-  mkdir -p "$MODPATH"/system/product/priv-app
-  cp -rf "$MODPATH"/Apps/MotoWidget "$MODPATH"/system/product/priv-app
   cp -rf "$MODPATH"/Apps/vendor "$MODPATH"/system
 elif [[ "$CODENAME" == "30" ]]; then
   ui_print "- Android 11 (API 30) detectado."
@@ -103,7 +97,6 @@ rm -rf "$MODPATH"/Apps
 
 REPLACE="
 /system/priv-app/ExternalStorageProvider
-/system/product/media/bootanimation.zip
 "
 
 ui_print "- Ajustando permisos."

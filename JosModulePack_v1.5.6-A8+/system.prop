@@ -170,10 +170,15 @@ fw.show_hidden_users=0
 fw.show_multiuserui=0
 fw.show_user_switcher_on_lockscreen=0
 fw.user_creation_disabled=1
-# SkiaGL Threaded and Optimization
+
+# SkiaGL Optimization
 debug.hwui.renderer=skiagl_threaded
 debug.renderengine.backend=skiaglthreaded
 renderthread.skia.reduceopstasksplitting=true
+
+# Scroll Optimization
+ro.vendor.perf.scroll_opt=true
+persist.sys.scrollingcache=2
 
 # Disable Client Composition Cache
 debug.sf.disable_client_composition_cache=1

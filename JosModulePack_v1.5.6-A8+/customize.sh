@@ -1,4 +1,3 @@
-#Informacion para Magisk
 AUTOMOUNT=true
 SKIPMOUNT=false
 PROPFILE=true
@@ -6,9 +5,9 @@ POSTFSDATA=true
 LATESTARTSERVICE=true
 
 ui_print "*******************************************************"
-ui_print "   Pack de modulos privado."
+ui_print "   Pack de modulos personal."
 ui_print "   La amalgama personal de JosFlix7!"
-ui_print "   Para Android 10+ AOSP"
+ui_print "   Para Android 8~13 AOSP con procesador Snapdragon"
 ui_print "   -------------------------------------------------   "
 ui_print "          Mods Incluidos:"
 ui_print "   - 8 Bits Rendering v1 by JosFlix7"
@@ -29,7 +28,7 @@ ui_print "   - Disable Client Composition Cache v1 by @zaidannn7"
 ui_print "   - Close Logd v7 by 旧梦, @头露基基 & @杀鲸"
 ui_print "   - Fresh UI v1.0 by @nonosvaimos"
 ui_print "   - Rendering v1.2 by @nonosvaimos"
-ui_print "   - GPU Turbo Boost (Tiramisu Mod) v6.2.1 by EmperorEye1993 & JosFlix7"
+ui_print "   - GPUTurboBoostTiramisu v6.2.1 by EmperorEye1993 & JosFlix7"
 ui_print "   - LowRAM-Flag Plus (Without LowRAM Prop) v3.2 by JosFlix7"
 ui_print "   -------------------------------------------------   "
 ui_print "   TOTAL: 20"
@@ -56,47 +55,51 @@ done
 [[ -z $SELECTPATH ]] && abort "- Instalacion FALLIDA. Tu dispositivo no soporta WCNSS_qcom_cfg.ini." || { mkdir -p $MODPATH/system; mv -f $MODPATH/vendor $MODPATH/system/vendor; mv -f $MODPATH/product $MODPATH/system/product; mv -f $MODPATH/system_ext $MODPATH/system/system_ext;}
 
 ui_print "- Detectando version de Android."
-CODENAME=$(getprop ro.build.version.sdk)
-if [[ "$CODENAME" == "33" ]]; then
-  ui_print "- Android 13 (API 33) detectado."
-  mkdir -p "$MODPATH"/system/priv-app/ExternalStorageProvider
-  cp -rf "$MODPATH"/Apps/ExternalStorageProvider_T/* "$MODPATH"/system/priv-app/ExternalStorageProvider
-  mkdir -p "$MODPATH"/system/product/overlay
-  cp -rf "$MODPATH"/Apps/WallZoomAnim "$MODPATH"/system/product/overlay
-  cp -rf "$MODPATH"/Apps/vendor "$MODPATH"/system
-elif [[ "$CODENAME" == "32" ]]; then
-  ui_print "- Android 12L (API 32) detectado."
-  mkdir -p "$MODPATH"/system/priv-app/ExternalStorageProvider
-  cp -rf "$MODPATH"/Apps/ExternalStorageProvider_S/* "$MODPATH"/system/priv-app/ExternalStorageProvider
-  mkdir -p "$MODPATH"/system/product/overlay
-  cp -rf "$MODPATH"/Apps/WallZoomAnim "$MODPATH"/system/product/overlay
-  cp -rf "$MODPATH"/Apps/vendor "$MODPATH"/system
-elif [[ "$CODENAME" == "31" ]]; then
-  ui_print "- Android 12 (API 31) detectado."
-  mkdir -p "$MODPATH"/system/priv-app/ExternalStorageProvider
-  cp -rf "$MODPATH"/Apps/ExternalStorageProvider_S/* "$MODPATH"/system/priv-app/ExternalStorageProvider
-  mkdir -p "$MODPATH"/system/product/overlay
-  cp -rf "$MODPATH"/Apps/WallZoomAnim "$MODPATH"/system/product/overlay
-  cp -rf "$MODPATH"/Apps/vendor "$MODPATH"/system
-elif [[ "$CODENAME" == "30" ]]; then
-  ui_print "- Android 11 (API 30) detectado."
-  mkdir -p "$MODPATH"/system/priv-app/ExternalStorageProvider
-  cp -rf "$MODPATH"/Apps/ExternalStorageProvider_R/* "$MODPATH"/system/priv-app/ExternalStorageProvider
-  mkdir -p "$MODPATH"/system/product/overlay
-  cp -rf "$MODPATH"/Apps/WallZoomAnim "$MODPATH"/system/product/overlay
-  cp -rf "$MODPATH"/Apps/vendor "$MODPATH"/system
-elif [[ "$CODENAME" == "29" ]]; then
-  ui_print "- Android 10 (API 29) detectado."
-  mkdir -p "$MODPATH"/system/priv-app/ExternalStorageProvider
-  cp -rf "$MODPATH"/Apps/ExternalStorageProvider_Q/* "$MODPATH"/system/priv-app/ExternalStorageProvider
-  cp -rf "$MODPATH"/Apps/vendor "$MODPATH"/system
+A_API=$(getprop ro.build.version.sdk)
+A_VER=$(getprop ro.build.version.release)
+A_TEXT="- Android $A_VER (API $A_API) detectado."
+REPLACE_NSR="/system/priv-app/ExternalStorageProvider"
+CREATE_NSR="$MODPATH/system/priv-app/ExternalStorageProviderNSR"
+COPY_NSR="$MODPATH/Apps"
+NEW_NSR="$MODPATH/system/priv-app/ExternalStorageProviderNSR"
+CREATE_OVERLAY="$MODPATH/system/product/overlay"
+COPY_WALL="$MODPATH/Apps/WallZoomAnim"
+DIR_OVERLAY="$MODPATH/system/product/overlay"
+COPY_VENDOR="$MODPATH/Apps/vendor"
+DIR_SYSTEM="$MODPATH/system"
+
+if [[ $A_API == 33 ]]; then
+  ui_print "$A_TEXT"
+  mkdir -p "$CREATE_NSR"
+  cp -rf "$COPY_NSR"/ExternalStorageProvider_T/* "$NEW_NSR"
+  mkdir -p "$CREATE_OVERLAY"
+  cp -rf "$COPY_WALL" "$DIR_OVERLAY"
+  cp -rf "$COPY_VENDOR" "$DIR_SYSTEM"
+elif [[ $A_API == 31 ]] || [[ $A_API == 32 ]]; then
+  ui_print "$A_TEXT"
+  mkdir -p "$CREATE_NSR"
+  cp -rf "$COPY_NSR"/ExternalStorageProvider_S/* "$NEW_NSR"
+  mkdir -p "$CREATE_OVERLAY"
+  cp -rf "$COPY_WALL" "$DIR_OVERLAY"
+  cp -rf "$COPY_VENDOR" "$DIR_SYSTEM"
+elif [[ $A_API == 30 ]]; then
+  ui_print "$A_TEXT"
+  mkdir -p "$CREATE_NSR"
+  cp -rf "$COPY_NSR"/ExternalStorageProvider_R/* "$NEW_NSR"
+  mkdir -p "$CREATE_OVERLAY"
+  cp -rf "$COPY_WALL" "$DIR_OVERLAY"
+  cp -rf "$COPY_VENDOR" "$DIR_SYSTEM"
+elif [[ $A_API -le 29 ]]; then
+  ui_print "$A_TEXT"
+  REPLACE_NSR=""
+  cp -rf "$COPY_VENDOR" "$DIR_SYSTEM"
 fi
 
 ui_print "- Eliminando archivos temporales."
 rm -rf "$MODPATH"/Apps
 
 REPLACE="
-/system/priv-app/ExternalStorageProvider
+$REPLACE_NSR
 "
 
 ui_print "- Ajustando permisos."

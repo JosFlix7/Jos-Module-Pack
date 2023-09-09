@@ -3,6 +3,7 @@ debug.enabletr=true
 debug.overlayui.enable=1
 debug.performance.tuning=1
 hw3d.force=1
+hwui.disable_vsync=false
 hwui.render_dirty_regions=false
 persist.sys.ui.hw=1
 ro.config.enable.hw_accel=true
@@ -216,12 +217,5 @@ profiler.force_disable_err_rpt=1
 profiler.force_disable_ulog=1
 # Don't force home launcher into memory
 ro.HOME_APP_ADJ=0
-# Dalvik VM Heap 1GB Config (Makes system uses less RAM)
-dalvik.vm.heapstartsize=8m
-dalvik.vm.heapgrowthlimit=64m
-dalvik.vm.heapsize=128m
-dalvik.vm.heaptargetutilization=0.75
-dalvik.vm.heapminfree=2m
-dalvik.vm.heapmaxfree=8m
 # Makes system believe that have a small battery
 ro.config.small_battery=true

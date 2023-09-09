@@ -6,7 +6,6 @@ A_API=$(getprop ro.build.version.sdk)
 if [[ $A_API -ge 31 ]]; then
   # GPU Turbo Boost Fork
   resetprop debug.composition.type auto
-  resetprop hwui.disable_vsync false
   resetprop persist.sys.composition.type auto
   resetprop debug.sf.enable_gl_backpressure 0
   # Rendering
@@ -15,7 +14,6 @@ elif [[ $A_API -le 30 ]]; then
   # GPU Turbo Boost Fork
   resetprop debug.composition.type c2d
   resetprop debug.composition.type gpu
-  resetprop hwui.disable_vsync true
   resetprop persist.sys.composition.type c2d
   resetprop persist.sys.composition.type gpu
   resetprop debug.sf.enable_gl_backpressure 1
@@ -24,6 +22,25 @@ elif [[ $A_API -le 30 ]]; then
 fi
 # Reset SurfaceFlinger
 service call SurfaceFlinger 1008
+
+# Dalvik VM Heap Dynamic Config (Makes system uses less RAM)
+# 3670016 KB = 3.5 GB | My Ocean 4GB variant have 3645760 KB
+RAM_T=$(cat /proc/meminfo | grep MemTotal | awk '{print $2}')
+if [[ $RAM_T -lt 3600000 ]]; then
+  resetprop dalvik.vm.heapstartsize 8m
+  resetprop dalvik.vm.heapgrowthlimit 64m
+  resetprop dalvik.vm.heapsize 128m
+  resetprop dalvik.vm.heaptargetutilization 0.75
+  resetprop dalvik.vm.heapminfree 2m
+  resetprop dalvik.vm.heapmaxfree 8m
+elif [[ $RAM_T -gt 3600000 ]]; then
+  resetprop dalvik.vm.heapstartsize
+  resetprop dalvik.vm.heapgrowthlimit
+  resetprop dalvik.vm.heapsize
+  resetprop dalvik.vm.heaptargetutilization
+  resetprop dalvik.vm.heapminfree
+  resetprop dalvik.vm.heapmaxfree
+fi
 
 # GPU Turbo Boost Fork Script
 write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor performance

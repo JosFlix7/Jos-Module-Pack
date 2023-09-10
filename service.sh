@@ -1,7 +1,7 @@
 #!/system/bin/sh
 MODDIR=${0%/*}
 
-# Resetprop para ajustar props dependiendo la version de Android
+# Resetprop to adjust props depending on the Android version
 A_API=$(getprop ro.build.version.sdk)
 if [[ $A_API -ge 31 ]]; then
   # GPU Turbo Boost Fork
@@ -23,23 +23,19 @@ fi
 # Reset SurfaceFlinger
 service call SurfaceFlinger 1008
 
+# LowRAM-Flag Resetprop | Dynamic set prop
 # Dalvik VM Heap Dynamic Config (Makes system uses less RAM)
 # 3670016 KB = 3.5 GB | My Ocean 4GB variant have 3645760 KB
 RAM_T=$(cat /proc/meminfo | grep MemTotal | awk '{print $2}')
 if [[ $RAM_T -lt 3600000 ]]; then
+  resetprop ro.config.low_ram true
+  resetprop ro.config.low_ram2g true
   resetprop dalvik.vm.heapstartsize 8m
   resetprop dalvik.vm.heapgrowthlimit 64m
   resetprop dalvik.vm.heapsize 128m
   resetprop dalvik.vm.heaptargetutilization 0.75
   resetprop dalvik.vm.heapminfree 2m
   resetprop dalvik.vm.heapmaxfree 8m
-elif [[ $RAM_T -gt 3600000 ]]; then
-  resetprop dalvik.vm.heapstartsize
-  resetprop dalvik.vm.heapgrowthlimit
-  resetprop dalvik.vm.heapsize
-  resetprop dalvik.vm.heaptargetutilization
-  resetprop dalvik.vm.heapminfree
-  resetprop dalvik.vm.heapmaxfree
 fi
 
 # GPU Turbo Boost Fork Script
@@ -63,7 +59,6 @@ write /dev/cpuset/foreground/cpus 0-3,4-7
 write /dev/cpuset/top-app/cpus 0-7
 
 # Close Logd Script
-sleep 5
 am kill logd
 killall -9 logd
 am kill logd.rc

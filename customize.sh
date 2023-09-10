@@ -43,7 +43,7 @@ ui_print "   - SkiaGL Optimization v2 by @zaidannn7 & @modulostk"
 ui_print "   - Scroll Optimization v1 by @zaidannn7"
 ui_print "   - Disable Client Composition Cache v1 by @zaidannn7"
 ui_print "   - Close Logd v7 by 旧梦, @头露基基 & @杀鲸"
-ui_print "   - Fresh UI v1.0 by @nonosvaimos"
+ui_print "   - Fresh UI v1 by @nonosvaimos"
 ui_print "   - Rendering v1.2 by @nonosvaimos"
 ui_print "   - GPU Turbo Boost Fork v6.2.2 by EmperorEye1993 & JosFlix7"
 ui_print "   - LowRAM-Flag Plus v4 by JosFlix7"
@@ -71,30 +71,31 @@ sed -i '/gChannelBondingMode24GHz=/d;/gChannelBondingMode5GHz=/d;/gForce1x1Excep
 done
 [[ -z $SELECTPATH ]] && abort "- Instalacion FALLIDA. Tu dispositivo no soporta WCNSS_qcom_cfg.ini." || { mkdir -p $MODPATH/system; mv -f $MODPATH/vendor $MODPATH/system/vendor; mv -f $MODPATH/product $MODPATH/system/product; mv -f $MODPATH/system_ext $MODPATH/system/system_ext;}
 
-ui_print "- Instalando mods."
-COPY_NSR="$MODPATH/Apps"
+ui_print "- Instalando Mods."
+MODS_DIR="$MODPATH/Mods"
 NEW_NSR="$MODPATH/system/priv-app/ExternalStorageProviderNSR"
+OVER_DIR="$MODPATH/system/product/overlay"
 if [[ $A_API -ge 30 && $A_API -le 33 ]]; then
-  mkdir -p "$MODPATH"/system/priv-app/ExternalStorageProviderNSR
-  mkdir -p "$MODPATH"/system/product/overlay
-  cp -rf "$MODPATH"/Apps/WallZoomAnim "$MODPATH"/system/product/overlay
+  mkdir -p "$NEW_NSR"
+  mkdir -p "$OVER_DIR"
+  mv -f "$MODS_DIR"/WallZoomAnim "$OVER_DIR"
   REPLACE_NSR="/system/priv-app/ExternalStorageProvider"
 fi
 
 if [[ $A_API == 33 ]]; then
-  cp -rf "$COPY_NSR"/ExternalStorageProvider_T/* "$NEW_NSR"
+  mv -f "$MODS_DIR"/ExternalStorageProvider_T/* "$NEW_NSR"
 elif [[ $A_API == 31 ]] || [[ $A_API == 32 ]]; then
-  cp -rf "$COPY_NSR"/ExternalStorageProvider_S/* "$NEW_NSR"
+  mv -f "$MODS_DIR"/ExternalStorageProvider_S/* "$NEW_NSR"
 elif [[ $A_API == 30 ]]; then
-  cp -rf "$COPY_NSR"/ExternalStorageProvider_R/* "$NEW_NSR"
+  mv -f "$MODS_DIR"/ExternalStorageProvider_R/* "$NEW_NSR"
 elif [[ $A_API -le 29 ]]; then
   REPLACE_NSR=""
 fi
 
-cp -rf "$MODPATH"/Apps/vendor "$MODPATH"/system
+mv -f "$MODS_DIR"/vendor/* "$MODPATH"/system/vendor
 
 ui_print "- Eliminando archivos temporales."
-rm -rf "$MODPATH"/Apps
+rm -rf "$MODS_DIR"
 
 REPLACE="
 $REPLACE_NSR

@@ -209,9 +209,9 @@ ro.surface_flinger.max_frame_buffer_acquired_buffers=3
 
 # LowRAM-Flag Plus
 # Disable Bootanimation For Quicker Boot & Fast Reboot
-debug.sf.nobootanimation=1
-ro.config.hw_quickpoweron=true
-dev.bootcomplete=0
+# debug.sf.nobootanimation=1
+# ro.config.hw_quickpoweron=true
+# dev.bootcomplete=0
 # Disables error reports
 profiler.force_disable_err_rpt=1
 profiler.force_disable_ulog=1

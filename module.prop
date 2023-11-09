@@ -1,7 +1,7 @@
 id=JosModulePack
 name=Jos' Module Pack
-version=v1.5.9
-versionCode=29
+version=v1.5.10
+versionCode=30
 author=JosFlix7
 description=Jos' Amalgamation! | Android 8~13 Snapdragon
 updateJson=https://raw.githubusercontent.com/JosFlix7/Jos-Module-Pack/main/update.json
